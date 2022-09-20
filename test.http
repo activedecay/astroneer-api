@@ -1,0 +1,76 @@
+### debug
+GET http://127.0.0.1:5000/astro/v1/astroneer/
+accept: application/json
+
+####
+#### Resources
+####
+
+### print resources
+GET http://127.0.0.1:5000/astro/v1/astroneer/resource/
+accept: application/json
+
+### create resource
+POST http://127.0.0.1:5000/astro/v1/astroneer/resource/
+accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+name=Composite&found=All
+
+### print resource "Composite"
+GET http://127.0.0.1:5000/astro/v1/astroneer/resource/Composite
+accept: application/json
+
+### update "Composite" name to "composite" and planets found on
+PUT http://127.0.0.1:5000/astro/v1/astroneer/resource/Composite
+accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+name=composite&found=Sylva%2C%20Desolo
+
+### delete resource "composite"
+DELETE http://127.0.0.1:5000/astro/v1/astroneer/resource/composite
+accept: application/json
+
+
+####
+#### Modules
+####
+
+### debug
+GET http://127.0.0.1:5000/astro/v1/astroneer/
+accept: application/json
+
+### print modules
+GET http://127.0.0.1:5000/astro/v1/astroneer/module/
+accept: application/json
+
+### create module
+POST http://127.0.0.1:5000/astro/v1/astroneer/module/
+accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+name=Small%20Printer&resource_cost=Composite
+
+### print module "Small Printer"
+GET http://127.0.0.1:5000/astro/v1/astroneer/module/Small%20Printer
+accept: application/json
+
+### print module "Dynamite"
+GET http://127.0.0.1:5000/astro/v1/astroneer/module/Dynamite
+accept: application/json
+
+### update "Small Printer" name to "Small printer" and resource cost
+PUT http://127.0.0.1:5000/astro/v1/astroneer/module/Composite
+accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+name=Small%20printer&resource_cost=Resin
+
+### delete module "Small printer"
+DELETE http://127.0.0.1:5000/astro/v1/astroneer/module/Small%20printer
+accept: application/json
+
+###
+
+

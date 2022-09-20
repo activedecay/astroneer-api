@@ -1,0 +1,45 @@
+###
+
+# curl -X 'POST'
+#  'http://127.0.0.1:5000/todos/'
+#  -H 'accept: application/json'
+#  -H 'Content-Type: application/x-www-form-urlencoded'
+#  -d 'task=task1'
+POST http://127.0.0.1:5000/todos/
+accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+task=task1
+
+###
+# curl -X 'DELETE'
+#  'http://127.0.0.1:5000/todos/todo4'
+#  -H 'accept: application/json'
+DELETE http://127.0.0.1:5000/todos/todo4
+accept: application/json
+
+###
+# curl -X 'GET'
+#  'http://127.0.0.1:5000/todos/todo1'
+#  -H 'accept: application/json'
+GET http://127.0.0.1:5000/todos/todo1
+accept: application/json
+
+###
+# curl -X 'PUT'
+#  'http://127.0.0.1:5000/todos/task1'
+#  -H 'accept: application/json'
+#  -H 'Content-Type: application/x-www-form-urlencoded'
+#  -d 'task=do%20the%20api'
+PUT http://127.0.0.1:5000/todos/task1
+accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+task=do%20the%20api
+
+###
+# curl -X 'GET'
+#  'http://127.0.0.1:5000/todos/'
+#  -H 'accept: application/json'
+GET http://127.0.0.1:5000/todos/
+accept: application/json
