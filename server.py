@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 app.config['RESTX_MASK_SWAGGER'] = False
 app.wsgi_app = ProxyFix(app.wsgi_app)
 api = Api(app, version="1.0.0", title="astroneer",
-          description="An astroneer app api", prefix='/astro/v1')
+          description="An astroneer API by the chunkinator, dude", prefix='/astro/v1')
 
 # why have namespaces at all?
 ns = api.namespace("astroneer", description="Astroneer operations")
