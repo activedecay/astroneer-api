@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 app.config['RESTX_MASK_SWAGGER'] = False
 app.wsgi_app = ProxyFix(app.wsgi_app)
 api = Api(app, version="1.0.0", title="astroneer",
-          description="An astroneer app", prefix='/astro/v1')
+          description="An astroneer app api", prefix='/astro/v1')
 
 # why have namespaces at all?
 ns = api.namespace("astroneer", description="Astroneer operations")
@@ -45,7 +45,9 @@ module_list = api.model("ModuleList", {
 
 
 def abort_if_module(module, **kwargs):
-    """:key not_exists when true abort if name does not exist"""
+    """ Aborting protocol
+    :key not_exists when true abort if name does not exist
+    """
     test = [x['name'] for x in DATABASE['modules'] if x['name'] == module]
     if 'not_exists' in kwargs:
         if not test:
@@ -57,7 +59,9 @@ def abort_if_module(module, **kwargs):
 
 
 def abort_if_resource(resource, **kwargs):
-    """:key not_exists when true abort if name does not exist"""
+    """ Aborting protocol
+    :key not_exists when true abort if name does not exist
+    """
     test = [x['name'] for x in DATABASE['resources'] if x['name'] == resource]
     if 'not_exists' in kwargs:
         if not test:
@@ -70,7 +74,7 @@ def abort_if_resource(resource, **kwargs):
 
 @ns.route("/")
 class Debug(Resource):
-    """Simple debug resource to aid in developmnt"""
+    """Simple debug resource to aid in development"""
 
     def get(self):
         """Debug print"""
@@ -236,11 +240,13 @@ if __name__ == "__main__":
     DEBUG = False
     if 'debug' in sys.argv:
         DEBUG = True
-
-    with open('printing0.csv', newline='', encoding='utf8') as f:
-        READER = csv.reader(f)
-        x = ModuleListApi()
-        for r in READER:  # row
-            x.hydrate(r[0], [r[1]], 'Backpack Printer')
+    MODULES = ['printing0.csv', 'printing1.csv', 'printing2.csv', 'printing3.csv']
+    PRINTERS = ['Backpack Printer', 'Small Printer', 'Medium Printer', 'Large Printer']
+    for x, y in zip(MODULES, PRINTERS):
+        with open(x, newline='', encoding='utf8') as f:
+            READER = csv.reader(f)
+            MODULE_HYDRATOR = ModuleListApi()
+            for r in READER:  # row
+                MODULE_HYDRATOR.hydrate(r[0], [r[1]], y)
 
     app.run(debug=DEBUG)

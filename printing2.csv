@@ -1,29 +1,28 @@
-Output,Input
 Large Printer,Compound x3
-Smelting Furnace,Resin x2 Compound
-Soil Centrifuge,Aluminum Compound x2
+Smelting Furnace,Resin Resin Compound
+Soil Centrifuge,Aluminum Compound Compound
 Chemistry Lab,Tungsten Glass Ceramic
 Atmospheric Condenser,Iron Glass Plastic
-Research Chamber,Resin Compound x2
-EXO Request Platform,Resin x2 Ceramic
+Research Chamber,Resin Compound Compound
+EXO Request Platform,Resin Resin Ceramic
 Trade Platform,EXO Chip Tungsten Iron
 Large Shredder,Iron Tungsten Carbide EXO Chip
 Large Solar Panel,Aluminum Alloy Glass Copper
 Large Wind Turbine,Aluminum Alloy Glass Ceramic
-Large Platform A,Resin x2
-Large Platform B,Resin x3
+Large Platform A,Resin Resin
+Large Platform B,Resin Resin Resin
 Large Platform C,Resin Iron Ceramic
-Large T-Platform,Aluminum x2 Resin
-Large Curved Platform,Ceramic x2 Compound
-Large Extended Platform,Resin x2
+Large T-Platform,Aluminum Aluminum Resin
+Large Curved Platform,Ceramic Ceramic Compound
+Large Extended Platform,Resin Resin
 Large Resource Canister,Glass Titanium Nanocarbon Alloy
-Large Storage,Ceramic x3
-Large Storage Silo A,Aluminum x2 Steel
-Large Storage Silo B,Steel x3
+Large Storage,Ceramic Ceramic Ceramic
+Large Storage Silo A,Aluminum Aluminum Steel
+Large Storage Silo B,Steel Steel Steel
 Large Active Storage,Zinc Aluminum Resin
 Buggy,Aluminum Compound
-Large Rover Seat,Compound Plastic x2
-Medium Rover,Rubber Plastic x2
+Large Rover Seat,Compound Plastic Plastic
+Medium Rover,Rubber Plastic Plastic
 Crane,Titanium Silicone Steel
 Large Fog Horn,Steel Rubber Plastic
 VTOL,EXO Chip Tungsten Carbide Silicone

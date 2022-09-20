@@ -1,7 +1,6 @@
-Output,Input
-Medium Printer,Compound x2
+Medium Printer,Compound Compound
 Oxygenator,Ceramic Aluminum
-Medium Shredder,Iron x2
+Medium Shredder,Iron Iron
 Field Shelter,Graphene Silicone
 Auto Arm,Graphite Aluminum
 Medium Resource Canister,Glass Plastic
@@ -22,15 +21,15 @@ Medium Wind Turbine,Ceramic Aluminum
 Medium Battery,Zinc Lithium
 RTG,Lithium Nanocarbon Alloy
 Medium Platform A,Resin
-Medium Platform B,Resin x2
+Medium Platform B,Resin Resin
 Medium Platform C,Resin
 Tall Platform,Ceramic
-Medium T-Platform,Resin x2
-Medium Storage,Resin x2
-Medium Storage Silo,Titanium x2
+Medium T-Platform,Resin Resin
+Medium Storage,Resin Resin
+Medium Storage Silo,Titanium Titanium
 Tall Storage,Ceramic
-Rover Seat,Compound x2
-Tractor,Aluminum x2
+Rover Seat,Compound Compound
+Tractor,Aluminum Aluminum
 Trailer,Aluminum Compound
 Medium Buggy Horn,Rubber Plastic
 Winch,Rubber EXO Chip
