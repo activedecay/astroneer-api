@@ -50,7 +50,7 @@ POST http://127.0.0.1:5000/astro/v1/astroneer/module/
 accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-name=Small%20Printer&resource_cost=Composite
+name=Medium%20Printer&resource_cost=Composite%2CResin&printer=Backpack%20Printer
 
 ### print module "Small Printer"
 GET http://127.0.0.1:5000/astro/v1/astroneer/module/Small%20Printer
@@ -61,14 +61,14 @@ GET http://127.0.0.1:5000/astro/v1/astroneer/module/Dynamite
 accept: application/json
 
 ### update "Small Printer" name to "Small printer" and resource cost
-PUT http://127.0.0.1:5000/astro/v1/astroneer/module/Composite
+PUT http://127.0.0.1:5000/astro/v1/astroneer/module/Medium%20Printer
 accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-name=Small%20printer&resource_cost=Resin
+name=Medium%20printer&resource_cost=Composite%2CResin&printer=Small%20Printer
 
 ### delete module "Small printer"
-DELETE http://127.0.0.1:5000/astro/v1/astroneer/module/Small%20printer
+DELETE http://127.0.0.1:5000/astro/v1/astroneer/module/Small%20Printer
 accept: application/json
 
 ###
