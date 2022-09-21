@@ -1,5 +1,5 @@
 ### debug
-GET http://127.0.0.1:5000/astro/v1/astroneer/
+GET http://127.0.0.1:5000/astro/v1/Default/
 accept: application/json
 
 ####
@@ -7,29 +7,40 @@ accept: application/json
 ####
 
 ### print resources
-GET http://127.0.0.1:5000/astro/v1/astroneer/resource/
+GET http://127.0.0.1:5000/astro/v1/Resources/
 accept: application/json
 
-### create resource
-POST http://127.0.0.1:5000/astro/v1/astroneer/resource/
+### create resource "Composite"
+POST http://127.0.0.1:5000/astro/v1/Resources/
 accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
-name=Composite&found=All
+name=Composite&found=All&crafted_in=Soil%20Centrifuge
 
-### print resource "Composite"
-GET http://127.0.0.1:5000/astro/v1/astroneer/resource/Composite
+### create resource "Laterite"
+POST http://127.0.0.1:5000/astro/v1/Resources/
+accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+name=Laterite&found=All&crafted_in=Trade%20Platform%20Scrap
+
+### print resource "Compound"
+GET http://127.0.0.1:5000/astro/v1/Resources/Compound
+accept: application/json
+
+### print resource "Helium"
+GET http://127.0.0.1:5000/astro/v1/Resources/Helium
 accept: application/json
 
 ### update "Composite" name to "composite" and planets found on
-PUT http://127.0.0.1:5000/astro/v1/astroneer/resource/Composite
+PUT http://127.0.0.1:5000/astro/v1/Resources/Composite
 accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
 name=composite&found=Sylva%2C%20Desolo
 
 ### delete resource "composite"
-DELETE http://127.0.0.1:5000/astro/v1/astroneer/resource/composite
+DELETE http://127.0.0.1:5000/astro/v1/Resources/composite
 accept: application/json
 
 
@@ -38,37 +49,37 @@ accept: application/json
 ####
 
 ### debug
-GET http://127.0.0.1:5000/astro/v1/astroneer/
+GET http://127.0.0.1:5000/astro/v1/Default/
 accept: application/json
 
 ### print modules
-GET http://127.0.0.1:5000/astro/v1/astroneer/module/
+GET http://127.0.0.1:5000/astro/v1/Modules/
 accept: application/json
 
 ### create module
-POST http://127.0.0.1:5000/astro/v1/astroneer/module/
+POST http://127.0.0.1:5000/astro/v1/Modules/
 accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
 name=Medium%20Printer&resource_cost=Composite%2CResin&printer=Backpack%20Printer
 
 ### print module "Small Printer"
-GET http://127.0.0.1:5000/astro/v1/astroneer/module/Small%20Printer
+GET http://127.0.0.1:5000/astro/v1/Modules/Small%20Printer
 accept: application/json
 
 ### print module "Dynamite"
-GET http://127.0.0.1:5000/astro/v1/astroneer/module/Dynamite
+GET http://127.0.0.1:5000/astro/v1/Modules/Dynamite
 accept: application/json
 
 ### update "Small Printer" name to "Small printer" and resource cost
-PUT http://127.0.0.1:5000/astro/v1/astroneer/module/Medium%20Printer
+PUT http://127.0.0.1:5000/astro/v1/Modules/Medium%20Printer
 accept: application/json
 Content-Type: application/x-www-form-urlencoded
 
 name=Medium%20printer&resource_cost=Composite%2CResin&printer=Small%20Printer
 
 ### delete module "Small printer"
-DELETE http://127.0.0.1:5000/astro/v1/astroneer/module/Small%20Printer
+DELETE http://127.0.0.1:5000/astro/v1/Modules/Small%20Printer
 accept: application/json
 
 ###

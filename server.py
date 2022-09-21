@@ -9,25 +9,15 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 app = flask.Flask(__name__)
 app.config['RESTX_MASK_SWAGGER'] = False
 app.wsgi_app = ProxyFix(app.wsgi_app)
-api = Api(app, version="1.0.0", title="astroneer",
-          description="An astroneer API by the chunkinator, dude", prefix='/astro/v1')
+api = Api(app, version="1.0.0", title="Astroneer",
+          description="An Astroneer API by the chunkinator, dude", prefix='/astro/v1')
 
-# why have namespaces at all?
-ns = api.namespace("astroneer", description="Astroneer operations")
+# it appears that the only reason to have a namespace is to further segregate the swagger ui
+ns = api.namespace("Default", description="Default operations")
+resource_ns = api.namespace("Resources", description="Astroneer resources operations")
+module_ns = api.namespace("Modules", description="Astroneer modules operations")
 
 DATABASE = {'modules': [], 'resources': [], 'planets': []}
-
-resource_model = api.model("Resource", {
-    "name": fields.String(required=True,
-                          description="The name of the resource"),
-    "found": fields.List(fields.String, required=True,
-                         description="Planets on which this resource is found")
-})
-resource_list = api.model("ResourceList", {
-    "resources": fields.List(fields.Nested(resource_model,
-                                           description="Resource"),
-                             description="Resources"),
-})
 
 module_model = api.model("Module", {
     "name": fields.String(required=True,
@@ -41,6 +31,34 @@ module_list = api.model("ModuleList", {
     "modules": fields.List(fields.Nested(module_model,
                                          description="Module"),
                            description="Modules"),
+})
+
+resource_model = api.model("Resource", {
+    "name": fields.String(required=True,
+                          description="The name of the resource"),
+    "found": fields.List(fields.String,
+                         description="Planets on which this resource is found"),
+    "crafted_in": fields.List(fields.String(description="Module"),
+                              description="Modules used to craft this resource"),
+    "refined_with": fields.List(fields.String(description="Resource"),
+                                description="Resources used to refine this resource"),
+    "rate": fields.List(fields.String(description="Planet resource collection rate"),
+                        description="Resource collection rate in an Atmospheric Condenser")
+})
+resource_list = api.model("ResourceList", {
+    "resources": fields.List(fields.Nested(resource_model,
+                                           description="Resource"),
+                             description="Resources"),
+})
+
+planet_model = api.model("Planet", {
+    "name": fields.String(required=True,
+                          description="The name of the planet"),
+})
+planet_list = api.model("PlanetList", {
+    "planets": fields.List(fields.Nested(planet_model,
+                                         description="Planet"),
+                           description="Planets"),
 })
 
 
@@ -83,8 +101,17 @@ class Debug(Resource):
 
 resource_parser = api.parser()
 resource_parser.add_argument("name", type=str, required=True, help="Resource name", location="form")
-resource_parser.add_argument("found", type=str, required=True,
+resource_parser.add_argument("found", type=str,
                              help="Planets on which this resource is found",
+                             location="form")
+resource_parser.add_argument("crafted_in", type=str,
+                             help="Modules used to craft this resource",
+                             location="form")
+resource_parser.add_argument("refined_with", type=str,
+                             help="Resources used to refine this resource",
+                             location="form")
+resource_parser.add_argument("rate", type=str,
+                             help="Resource collection rate in an Atmospheric Condenser",
                              location="form")
 module_parser = api.parser()
 module_parser.add_argument("name", type=str, required=True,
@@ -102,7 +129,7 @@ module_parser.add_argument("printer", type=str, required=True,
 #
 
 
-@ns.route("/resource/<string:name_id>")
+@resource_ns.route("/<string:name_id>")
 @api.doc(responses={404: "Resource not found"}, params={"name_id": "The resource name"})
 class ResourceApi(Resource):
     """Show a single todo item and lets you delete them"""
@@ -129,17 +156,36 @@ class ResourceApi(Resource):
         abort_if_resource(name_id, not_exists=True)
         args = resource_parser.parse_args()
         resource = {
-            "name": args["name"],
-            "found": [x.strip() for x in args["found"].split(',')]
+            'name': args["name"],
+            'found': [x.strip() for x in args["found"].split(',')
+                      ] if 'found' in args else [],
+            'crafted_in': [x.strip() for x in args['crafted_in'].split(',')
+                           ] if 'crafted_in' in args else []
         }
         DATABASE['resources'].remove([x for x in DATABASE['resources'] if x['name'] == name_id][0])
         DATABASE['resources'].append(resource)
         return resource
 
 
-@ns.route("/resource/")
+@resource_ns.route("/")
 class ResourceListApi(Resource):
     """Shows a list of all resources, and lets you POST to add new resources"""
+
+    # rate should be `planet:rate`
+    def hydrate(self, name, found=None, crafted_in=None, refined_with=None, rate=None):
+        """Resource database is hydrated from csv files"""
+        resource = {
+            'name': name,
+            'found': [x.strip() for x in found.split(',')
+                      ] if found else [],
+            'crafted_in': [x.strip() for x in crafted_in.split(',')
+                           ] if crafted_in else [],
+            'refined_with': [x.strip() for x in refined_with.split(',')
+                             ] if refined_with else [],
+            'rate': [x.strip() for x in rate.split(',')
+                     ] if rate else [],
+        }
+        DATABASE['resources'].append(resource)
 
     @api.marshal_list_with(resource_list)
     def get(self):
@@ -153,8 +199,11 @@ class ResourceListApi(Resource):
         args = resource_parser.parse_args()
         abort_if_resource(args["name"], exists=True)
         resource = {
-            "name": args["name"],
-            "found": [x.strip() for x in args["found"].split(',')]
+            'name': args["name"],
+            'found': [x.strip() for x in args["found"].split(',')
+                      ] if 'found' in args else [],
+            'crafted_in': [x.strip() for x in args['crafted_in'].split(',')
+                           ] if 'crafted_in' in args else []
         }
         DATABASE['resources'].append(resource)
         return resource, 201
@@ -165,7 +214,7 @@ class ResourceListApi(Resource):
 #
 
 
-@ns.route("/module/<string:name_id>")
+@module_ns.route("/<string:name_id>")
 @api.doc(responses={404: "Module not found"}, params={"name_id": "The module name"})
 class ModuleApi(Resource):
     """Show a single todo item and lets you delete them"""
@@ -203,7 +252,7 @@ class ModuleApi(Resource):
         return module
 
 
-@ns.route("/module/")
+@module_ns.route("/")
 class ModuleListApi(Resource):
     """Shows a list of all modules, and lets you POST to add new modules"""
 
@@ -240,13 +289,19 @@ if __name__ == "__main__":
     DEBUG = False
     if 'debug' in sys.argv:
         DEBUG = True
-    MODULES = ['printing0.csv', 'printing1.csv', 'printing2.csv', 'printing3.csv']
+    MODULES = ['data/printing0.csv', 'data/printing1.csv', 'data/printing2.csv',
+               'data/printing3.csv']
     PRINTERS = ['Backpack Printer', 'Small Printer', 'Medium Printer', 'Large Printer']
-    for x, y in zip(MODULES, PRINTERS):
-        with open(x, newline='', encoding='utf8') as f:
+    for FILE, PRINTER in zip(MODULES, PRINTERS):
+        with open(FILE, newline='', encoding='utf8') as f:
             READER = csv.reader(f)
             MODULE_HYDRATOR = ModuleListApi()
             for r in READER:  # row
-                MODULE_HYDRATOR.hydrate(r[0], [r[1]], y)
+                MODULE_HYDRATOR.hydrate(r[0], [r[1]], PRINTER)
+    with open('data/resources.csv', newline='', encoding='utf8') as f:
+        READER = csv.reader(f)
+        RESOURCE_HYDRATOR = ResourceListApi()
+        for r in READER:
+            RESOURCE_HYDRATOR.hydrate(r[0], r[1], r[2], r[3], r[4])
 
     app.run(debug=DEBUG)
