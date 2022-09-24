@@ -1,10 +1,10 @@
 Small Printer,Compound,Unlocked
 Packager,Graphite,"1,000"
-Leveling Block,Canister (full),"500"
+Leveling Block,Canister,"500"
 Tether,Compound,Unlocked
 Oxygen Filters,Resin,Unlocked
 Oxygen Tank,Glass,"2,000"
-Portable Oxygenator,Nanocarbon Alloy,"10,000"
+Portable Oxygenator,Nanocarbon_Alloy,"10,000"
 Small Canister,Resin,Unlocked
 Beacon,Quartz,Unlocked
 Worklight,Copper,Unlocked
@@ -21,15 +21,15 @@ Narrow Mod,Zinc,"1,000"
 Inhibitor Mod,Zinc,"1,000"
 Alignment Mod,Zinc,"1,000"
 Drill Mod 1,Ceramic,"1,000"
-Drill Mod 2,Tungsten Carbide,"2,500"
+Drill Mod 2,Tungsten_Carbide,"2,500"
 Drill Mod 3,Diamond,"3,750"
 Dynamite,Explosive Powder,"3,750"
 Fireworks,Explosive Powder,"3,750"
-Small Camera,EXO Chip,"2,500"
+Small Camera,EXO_Chip,"2,500"
 Small Trumpet Horn,Plastic,"1,000"
 Holographic Figurine,Plastic,"3,000"
 Terrain Analyzer,Zinc,"2,000"
 Probe Scanner,Steel,"4,000"
-Solid-Fuel Jump Jet,Aluminum Alloy,"5,000"
-Hydrazine Jet Pack,Titanium Alloy,"15,000"
-Hoverboard,EXO Chip,Unlocked via missions
+Solid-Fuel Jump Jet,Aluminum_Alloy,"5,000"
+Hydrazine Jet Pack,Titanium_Alloy,"15,000"
+Hoverboard,EXO_Chip,Unlocked via missions

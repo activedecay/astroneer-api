@@ -19,7 +19,7 @@ Medium Generator,Tungsten Aluminum
 Medium Solar Panel,Glass Copper
 Medium Wind Turbine,Ceramic Aluminum
 Medium Battery,Zinc Lithium
-RTG,Lithium Nanocarbon Alloy
+RTG,Lithium Nanocarbon_Alloy
 Medium Platform A,Resin
 Medium Platform B,Resin Resin
 Medium Platform C,Resin
@@ -32,13 +32,13 @@ Rover Seat,Compound Compound
 Tractor,Aluminum Aluminum
 Trailer,Aluminum Compound
 Medium Buggy Horn,Rubber Plastic
-Winch,Rubber EXO Chip
-Paver,Silicone Aluminum Alloy
-Drill Strength 1,Ceramic Tungsten Carbide
-Drill Strength 2,Tungsten Carbide Titanium Alloy
-Drill Strength 3,Titanium Alloy Diamond
+Winch,Rubber EXO_Chip
+Paver,Silicone Aluminum_Alloy
+Drill Strength 1,Ceramic Tungsten_Carbide
+Drill Strength 2,Tungsten_Carbide Titanium_Alloy
+Drill Strength 3,Titanium_Alloy Diamond
 Solid-Fuel Thruster,Ammonium Aluminum
-Hydrazine Thruster,Steel EXO Chip
+Hydrazine Thruster,Steel EXO_Chip
 Packager,Graphite
 Small Canister,Resin
 Dynamite,Explosive Powder
